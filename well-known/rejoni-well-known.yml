@@ -1,0 +1,84 @@
+generated: '2026-08-05'
+method: probed
+source: live GET probes of https://rejoni.com/.well-known/*
+host: https://rejoni.com
+summary: >-
+  No /.well-known/ discovery documents are published. Every probed path returns HTTP 404 from the
+  Webflow-hosted origin (an HTML 404 page, not JSON), so there is no security.txt, no OIDC or OAuth
+  discovery, no API catalog, no AI plugin manifest and no A2A agent card on this host. www.rejoni.com
+  serves the same site, and no api./developer./docs./app./portal. host answers on either port 80 or
+  443, so there is no second host to probe. Absence is recorded as evidence — it is a valid probe
+  result, not a gap in the harvest. No WellKnown, SecurityTxt or AgentCard pointer is wired in
+  apis.yml because none of these documents exist.
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/oauth-protected-resource
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /.well-known/agent-card.json
+  status: 404
+- path: /.well-known/agent.json
+  status: 404
+x-contract-discovery:
+  note: >-
+    STEP 0b contract discovery run in full against every host associated with this company before
+    recording "no machine-readable contract". No OpenAPI/Swagger document, no GraphQL endpoint, no
+    MCP endpoint and no A2A agent card exists on any Rejoni host.
+  probes:
+  - url: https://rejoni.com/openapi.json
+    status: 404
+  - url: https://rejoni.com/swagger.json
+    status: 404
+  - url: https://rejoni.com/api-docs
+    status: 404
+  - url: https://rejoni.com/docs
+    status: 404
+  - url: https://rejoni.com/api
+    status: 404
+  - url: https://rejoni.com/graphql
+    status: 404
+  - url: https://rejoni.com/mcp
+    status: 404
+  - url: https://rejoni.com/llms.txt
+    status: 404
+  - url: https://rejoni.com/sitemap.xml
+    status: 404
+  - url: https://rejoni.com/wp-json/
+    status: 404
+  - url: https://rejoni.com/robots.txt
+    status: 200
+    note: >-
+      Served, but zero bytes — an empty file, so nothing is disallowed and no sitemap is advertised.
+      Crawling was not blocked; the surface genuinely is not there.
+  - url: https://rejoni.com/
+    status: 200
+  - url: https://www.rejoni.com/
+    status: 200
+  - url: https://api.rejoni.com/
+    status: 0
+    note: >-
+      DNS returns a wildcard A record (35.215.119.129) but no listener answers — TCP connect times
+      out on both 443 and 80. Same for developer./docs./app./portal.rejoni.com.
+  control:
+    url: https://rejoni.com/zzz-control-path-check
+    status: 404
+    note: >-
+      Control path confirms the origin returns real 404s rather than a soft-200 catch-all, so the
+      404s above are genuine absences and not false credit.
+x-evidence:
+  fetched: '2026-08-05'
+  host: rejoni.com
+  server: Webflow (cdn.prod.website-files.com asset host)
+  note: >-
+    The corporate site is a small Webflow marketing site with six real pages — /, /about, /team,
+    /technology, /news, /contact and /privacy all return 200 — while /terms and /careers return 404.
+    There is no CMS or content API behind it (no wp-json, no generator meta, no JSON endpoint), and
+    the news page links out to BusinessWire rather than hosting its own feed.
