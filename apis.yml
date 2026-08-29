@@ -1,5 +1,16 @@
 aid: rejoni
 name: Rejoni
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 image: https://cdn.prod.website-files.com/68a338214a8d0f9a68a471b5/68a360063a1179d6ecb188ec_Rejoni_tag_logo_White.svg
 description: >-
   Rejoni, Inc. is a privately held, clinical-stage women's health medical device company founded in
